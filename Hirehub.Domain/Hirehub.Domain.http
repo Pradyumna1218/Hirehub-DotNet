@@ -1,0 +1,6 @@
+@Hirehub.Domain_HostAddress = http://localhost:5002
+
+GET {{Hirehub.Domain_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Hirehub.Application/Hirehub.Application.csproj" />
+  <Project Path="Hirehub.Domain/Hirehub.Domain.csproj" />
+  <Project Path="Hirehub.Infrastructure/Hirehub.Infrastructure.csproj" />
+  <Project Path="Hirehub.Api/Hirehub.Api.csproj" />
+</Solution>
