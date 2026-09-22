@@ -1,5 +1,4 @@
 ﻿using Hirehub.Domain.Common;
-using Microsoft.AspNetCore.Mvc.ViewEngines;
 
 namespace Hirehub.Domain.Entities;
 
