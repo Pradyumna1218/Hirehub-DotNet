@@ -6,4 +6,5 @@ public static class AppPolicies
     public const string CanSubmitProposals = "CanSubmitProposals";
     public const string CanManagePlatform = "CanManagePlatform";
     public const string CanManageOrders = "CanManageOrders";
+    public const string CanLeaveReviews = "CanLeaveReviews";
 }

@@ -80,6 +80,9 @@ public static class DependencyInjection
 
             options.AddPolicy(AppPolicies.CanManageOrders, policy =>
                 policy.RequireRole(AppRoles.Client, AppRoles.Freelancer, AppRoles.Admin));
+
+            options.AddPolicy(AppPolicies.CanLeaveReviews, policy =>
+                policy.RequireRole(AppRoles.Client));
         });
 
         services.AddScoped<ITokenService, TokenService>();
@@ -87,6 +90,7 @@ public static class DependencyInjection
         services.AddScoped<IJobService, JobService>();
         services.AddScoped<IProposalService, ProposalService>();
         services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IReviewService, ReviewService>();
 
         return services;
     }
