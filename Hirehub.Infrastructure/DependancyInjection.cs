@@ -1,8 +1,10 @@
 ﻿using Hirehub.Application.Interfaces;
 using Hirehub.Application.Settings;
+using Hirehub.Domain.Enums;
 using Hirehub.Infrastructure.Data;
 using Hirehub.Infrastructure.Identity;
 using Hirehub.Infrastructure.Service;
+using Hirehub.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Hirehub.Domain.Enums;
 
 namespace Hirehub.Infrastructure;
 
@@ -81,6 +82,7 @@ public static class DependencyInjection
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IJobService, JobService>();
+        services.AddScoped<IProposalService, ProposalService>();
 
         return services;
     }
