@@ -1,4 +1,6 @@
 using Hirehub.Infrastructure;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
@@ -6,6 +8,8 @@ builder.Services.AddInfrastructure(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssembly(typeof(Hirehub.Application.DTOs.Auth.RegisterRequest).Assembly);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>

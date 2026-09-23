@@ -19,13 +19,14 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<FreelancerSkill> FreelancerSkills => Set<FreelancerSkill>();
     public DbSet<FreelancerProfile> FreelancerProfiles => Set<FreelancerProfile>();
     public DbSet<ClientProfile> ClientProfiles => Set<ClientProfile>();
-    public DbSet<Service> Services => Set<Service>();
+    public DbSet<Domain.Entities.Service> Services => base.Set<Domain.Entities.Service>();
     public DbSet<Job> Jobs => Set<Job>();
     public DbSet<Proposal> Proposals => Set<Proposal>();
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<Payment> Payments => Set<Payment>();
     public DbSet<Review> Reviews => Set<Review>();
     public DbSet<Notification> Notifications => Set<Notification>();
+    public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

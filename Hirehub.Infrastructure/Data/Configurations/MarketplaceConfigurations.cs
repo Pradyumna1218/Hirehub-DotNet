@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Hirehub.Infrastructure.Data.Configurations;
 
-public class ServiceConfiguration : IEntityTypeConfiguration<Service>
+public class ServiceConfiguration : IEntityTypeConfiguration<Domain.Entities.Service>
 {
-    public void Configure(EntityTypeBuilder<Service> builder)
+    public void Configure(EntityTypeBuilder<Domain.Entities.Service> builder)
     {
         builder.HasQueryFilter(x => !x.IsDeleted);
 

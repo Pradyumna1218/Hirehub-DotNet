@@ -1,14 +1,16 @@
-﻿using System.Text;
-using Hirehub.Application.Interfaces;
+﻿using Hirehub.Application.Interfaces;
 using Hirehub.Application.Settings;
 using Hirehub.Infrastructure.Data;
 using Hirehub.Infrastructure.Identity;
+using Hirehub.Infrastructure.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Hirehub.Domain.Enums;
 
 namespace Hirehub.Infrastructure;
 
@@ -64,9 +66,21 @@ public static class DependencyInjection
                 };
             });
 
-        services.AddAuthorization();
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(AppPolicies.CanManageJobs, policy =>
+                policy.RequireRole(AppRoles.Client, AppRoles.Admin));
+
+            options.AddPolicy(AppPolicies.CanSubmitProposals, policy =>
+                policy.RequireRole(AppRoles.Freelancer));
+
+            options.AddPolicy(AppPolicies.CanManagePlatform, policy =>
+                policy.RequireRole(AppRoles.Admin));
+        });
 
         services.AddScoped<ITokenService, TokenService>();
+        services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IJobService, JobService>();
 
         return services;
     }
