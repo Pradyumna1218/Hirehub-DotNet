@@ -77,12 +77,16 @@ public static class DependencyInjection
 
             options.AddPolicy(AppPolicies.CanManagePlatform, policy =>
                 policy.RequireRole(AppRoles.Admin));
+
+            options.AddPolicy(AppPolicies.CanManageOrders, policy =>
+                policy.RequireRole(AppRoles.Client, AppRoles.Freelancer, AppRoles.Admin));
         });
 
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IJobService, JobService>();
         services.AddScoped<IProposalService, ProposalService>();
+        services.AddScoped<IOrderService, OrderService>();
 
         return services;
     }

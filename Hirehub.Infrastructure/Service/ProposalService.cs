@@ -10,10 +10,14 @@ namespace Hirehub.Infrastructure.Services;
 public class ProposalService : IProposalService
 {
     private readonly ApplicationDbContext _db;
+    private readonly IOrderService _orderService;
 
-    public ProposalService(ApplicationDbContext db)
+
+    public ProposalService(ApplicationDbContext db, IOrderService orderService)
     {
         _db = db;
+        _orderService = orderService;
+
     }
 
     public async Task<ProposalResponse> CreateAsync(string userId, ProposalCreateRequest request)
@@ -100,6 +104,8 @@ public class ProposalService : IProposalService
 
         proposal.Status = ProposalStatus.Accepted;
         proposal.Job.Status = JobStatus.InProgress;
+
+        await _orderService.CreateFromProposalAsync(proposal);
 
         var otherPending = await _db.Proposals
             .Where(p => p.JobId == proposal.JobId && p.Id != proposal.Id && p.Status == ProposalStatus.Pending)
